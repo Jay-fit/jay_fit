@@ -1,0 +1,629 @@
+/*!	BASED ON : armazon.css v0.3.1 - Lightweight and Supersimple CSS3 Boilerplate Micro Framework built on LESS
+ 	(c) 2016 Jorge Moreno ( @alterebro ) - MIT License - https://github.com/alterebro/armazon.css
+*/
+
+// --------------------------------------------
+// Variables @less
+@armazon-mobile-breakpoint 		: 480;		// width to filter mobile devices
+@armazon-desktop-breakpoint 	: 960; 		// width to fire desktop layout filtering
+
+@armazon-margin 				: 3.6rem; 	// Global margin
+@armazon-columns-margin 		: 3.6; 		// Amount of percent margin on Grid Columns ( Percentual Value )
+@armazon-columns-tablet-margin 	: 2; 		// Percent margin when breaking into Tablet Mode
+
+@armazon-color-background 		: #fafbfc;	// Global Background Color
+@armazon-color-foreground 		: #262524; 	// Global Foreground & Text Color
+@armazon-color-primary 			: #ba3e37; 	// Links and Buttons Color
+@armazon-color-neutral 			: #a0a0a0; 	// Neutral Grey
+
+// --------------------------------------------
+// Media Queries
+@mobile 	: ~"all and (max-width: @{armazon-mobile-breakpoint}px)"; 	// Default
+@non-mobile : ~"all and (min-width: @{armazon-mobile-breakpoint}px)"; 	// Matchs both @tablet and @desktop
+@tablet 	: ~"all and (min-width: @{armazon-mobile-breakpoint}px) and (max-width: @{armazon-desktop-breakpoint}px)";
+@desktop 	: ~"all and (min-width: @{armazon-desktop-breakpoint}px)";
+
+// --------------------------------------------
+// Mixins @less
+.transition( @value : all 0.25s ease-out) {
+	-webkit-transition: @value;
+	transition: @value;
+}
+
+// --------------------------------------------
+// Global
+html, body {
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-family: sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	box-sizing: border-box;
+	font-size: 62.5%;
+}
+body {
+	font-size: 1.6em;
+	line-height: 1.5;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+    .transition();
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+	display: block;
+}
+
+a {
+	background-color: transparent;
+	text-decoration: none;
+	color: @armazon-color-primary;
+	border-bottom: solid transparent 1px;
+}
+a:active, a:hover {
+	outline: 0;
+	color: @armazon-color-foreground;
+	border-bottom: solid @armazon-color-primary 1px;
+}
+a, a * {
+//	.transition();
+}
+
+b, strong {
+	font-weight: bold;
+}
+dfn {
+	font-style: normal;
+}
+small {
+	font-size: 80%;
+}
+
+img {
+	border: 0;
+	display: block;
+	margin: 0 0 @armazon-margin/2 0;
+	max-width: 100%;
+}
+
+hr {
+	height: 0;
+	margin: @armazon-margin 0;
+	border: none;
+	border-top: dotted lighten(@armazon-color-neutral, 20%) 1px;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+}
+button {
+	overflow: visible;
+}
+button,
+select {
+	text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	cursor: pointer;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: .1rem;
+	text-align: center;
+	color: @armazon-color-background;
+	background: @armazon-color-primary;
+	border: none;
+	white-space: nowrap;
+	border-radius: 3px;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .1);
+	vertical-align: top;
+
+	min-width: 24rem;
+	max-width: 100%;
+	padding: 0;
+	height: 3.6rem;
+	line-height: 3.6rem;
+//	.transition();
+}
+button:hover, button:focus,
+html input[type="button"]:hover, html input[type="button"]:focus,
+input[type="button"]:hover, input[type="button"]:focus,
+input[type="reset"]:hover, input[type="reset"]:focus,
+input[type="submit"]:hover, input[type="submit"]:focus {
+	text-decoration: none;
+	background: @armazon-color-foreground;
+	color: @armazon-color-background;
+	border: none;
+	outline: 0;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+input {
+	line-height: normal;
+}
+
+
+input[type="checkbox"],
+input[type="radio"] {
+	padding: 0;
+	display: inline;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+input[type="search"] {
+	-webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+label {
+	display: block;
+}
+textarea {
+	overflow: auto;
+}
+optgroup {
+	font-weight: bold;
+}
+
+// --- More Elements --------------------------
+input[type="date"],
+input[type="time"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: #fff;
+	border: solid lighten(@armazon-color-neutral, 20%) 1px;
+	border-radius: none;
+	display: inline-block;
+	vertical-align: top;
+	padding: .5rem .75rem;
+	width: 100%;
+	max-width: 30rem;
+	height: 3.6rem;
+//	.transition();
+}
+select {
+	border: none;
+	outline: 1px solid lighten(@armazon-color-neutral, 20%);
+	outline-offset: -1px;
+	border-radius: 0;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAPAQMAAAA1YcYVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NkUxNzU1QTlBNzZDMTFFNUFFODhCOENCNDg0MUFBMjUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NkUxNzU1QUFBNzZDMTFFNUFFODhCOENCNDg0MUFBMjUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2RTE3NTVBN0E3NkMxMUU1QUU4OEI4Q0I0ODQxQUEyNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2RTE3NTVBOEE3NkMxMUU1QUU4OEI4Q0I0ODQxQUEyNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PszxATYAAAAGUExURczMzMzMzL4bSpkAAAABdFJOUwBA5thmAAAAPElEQVQI12MQYBBgsADCGiD8B4T1jH8Y7Jt/MMgf/8DA//4BA/v/AwzM/xsYGP8zMAClGYDKGIDKGYDaABK9EHmI0q4WAAAAAElFTkSuQmCC');
+	background-repeat: no-repeat;
+	background-size: 12px 8px;
+    background-position: right 8px top 50%;
+}
+textarea {
+	min-height: 12rem;
+}
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+	border: solid @armazon-color-primary 1px;
+	outline: 0;
+}
+select:focus {
+	border: none;
+	outline: solid @armazon-color-primary 1px;
+	outline-offset: -1px;
+	border-radius: 0;
+}
+
+// --------------------------------------------
+// Tables
+/*
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	font-size: 1.4rem;
+
+	caption {
+		text-align: left;
+		padding: @armazon-margin/4 @armazon-margin/2;
+		font-weight: bold;
+		font-size: 1.3rem;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+	}
+	th, td {
+		padding: @armazon-margin/3 @armazon-margin/2;
+		text-align: left;
+		vertical-align: baseline;
+	}
+	th {
+		font-weight: bold;
+		font-size: 1.1rem;
+		letter-spacing: .05rem;
+		text-transform: uppercase;
+	}
+    thead {
+        th {
+			border-bottom: solid lighten(@armazon-color-neutral, 20%) 1px;
+		}
+    }
+	tbody {
+		tr:nth-child(even) td,
+		tr:nth-child(even) th {
+			background: lighten(@armazon-color-neutral, 30%);
+		}
+	}
+	tfoot {
+		th, td {
+			border-top: solid lighten(@armazon-color-neutral, 20%) 1px;
+			color: @armazon-color-neutral;
+		}
+	}
+}
+*/
+
+// --------------------------------------------
+// Lists
+ol, ul {
+	padding: 0 0 0 @armazon-margin/2;
+	margin: 0 0 @armazon-margin @armazon-margin/2;
+	li {
+		padding: .1rem 0;
+	}
+}
+ul ul, ul ol, ol ol, ol ul {
+	margin: .5rem @armazon-margin/4;
+}
+dl {
+	dd {
+		margin: 0;
+		padding: 0;
+		color: @armazon-color-neutral;
+	}
+}
+
+
+// --------------------------------------------
+// Spacing
+button, .button, input, textarea, select, fieldset {
+	margin: 0 0 5px 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, pre {
+	margin: 0 0 (@armazon-margin/2) 0;
+}
+blockquote, figure, table, dl {
+	margin: 0 0 @armazon-margin 0;
+}
+
+// --------------------------------------------
+// Pseudo-elements
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+
+// armazon.css eof
+// --------------------------------------------
+// --------------------------------------------
+// Author's custom styles :
+
+
+html {
+    height: 100%;
+    color: @armazon-color-foreground;
+    background-color: @armazon-color-primary;
+    background-image: url('../img/track-field.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+body {
+    min-height: 100%;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, .975);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, .2),
+        0 0 0 4px rgba(0, 0, 0, .1)
+    ;
+}
+body > * {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 1.3rem;
+	text-shadow: 0 1px 0 #fff;
+}
+
+
+
+
+header {
+    background: darken(@armazon-color-primary, 3%);
+    color: @armazon-color-background;
+    box-shadow: inset 0 -1px 0 darken(@armazon-color-primary, 15%);
+    text-align: center;
+
+    h1 {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+        font-weight: 400;
+        font-size: 120%;
+        padding: 2rem 0;
+        margin: 0 auto 2rem auto;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url(../icon.png);
+            background-size: 24px;
+            margin: 0 0 0 10px;
+            vertical-align: middle;
+        }
+    }
+}
+
+footer {
+    clear: both;
+    padding: 2rem 0;
+    hr { display: none; }
+    p {
+        border-top: dotted lighten(@armazon-color-primary, 25%) 1px;
+        padding: 20px 20px 0 20px;
+        margin: 0 0 5px 0;
+        text-align: center;
+    }
+
+    ul.social-sharing {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: center;
+
+        li {
+            display: inline-block;
+            margin: 0 0 0 5px;
+            font-weight: 400;
+            i {
+                margin: 0 5px 0 0;
+            }
+
+            &:first-child {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+section[role="main"] {
+
+    margin: 0 auto;
+    overflow: auto;
+
+    p.intro {
+        padding: 0 25px;
+        margin: 0 auto 10px auto;
+        text-align: justify;
+
+        @media @non-mobile {
+            text-align: left;
+        }
+    }
+
+
+    dl {
+        width: 290px;
+        margin: 0 auto;
+        padding: 0;
+
+        dt {
+            clear: both;
+            border-bottom: dotted @armazon-color-primary 1px;
+            line-height: 30px;
+            padding: 5px 0 0 0;
+            i {
+                color: @armazon-color-primary;
+            }
+        }
+
+        dd {
+            float: left;
+            overflow: auto;
+
+            span {
+                display: block;
+                float: left;
+                padding: 0 5px 0 0;
+
+                label {
+                    font-size: 80%;
+                    line-height: 20px;
+                    display: block;
+                    padding: .5rem 0 0 0;
+                }
+            }
+
+            p {
+                line-height: 20px;
+                margin: 0;
+                padding: 5px 0 0 0;
+                font-size: 80%;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 95px;
+                visibility: hidden;
+            }
+
+            input[type="button"], button {
+                width: 95px;
+                min-width: 0;
+                padding: 0;
+                display: block;
+                float: left;
+            }
+        }
+
+        dd.time-input span,
+        dd.pace-input span,
+        dd.distance-input span {
+            width: 65px;
+        }
+        dd.distance-input {
+            span:nth-child(1) { width: 65px; }
+            span:nth-child(2) { width: 130px; }
+
+            div.separator-or {
+                clear: both;
+                font-size: 75%;
+                text-transform: uppercase;
+                letter-spacing: .15rem;
+                padding: 0 0 .25rem 0;
+            }
+            div.event-input {
+                margin: 0 .5rem 0 0;
+            }
+        }
+
+        // DL
+        @media @non-mobile {
+            font-size: 1.5rem;
+            width: 420px;
+
+            dd {
+                p,
+                input[type="button"], button {
+                    width: 195px;
+                }
+                button:before {
+                    content: 'calculate ';
+                }
+            }
+            dd.time-input span,
+            dd.pace-input span,
+            dd.distance-input span {
+                width: 75px;
+            }
+            dd.distance-input {
+                span:nth-child(1) { width: 75px; }
+                span:nth-child(2) { width: 150px; }
+            }
+
+        }
+
+    }
+}
+
+
+#modal-window {
+    position: fixed;
+    top: 200%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+
+    &.open {
+        top: 0;
+        background-color: rgba(0, 0, 0, .35);
+    }
+
+    div[class^="modal"] {
+        background: @armazon-color-background;
+        width: 280px;
+        margin: 0 auto;
+        padding: @armazon-margin;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, .2),
+            0 0 0 4px rgba(0, 0, 0, .1)
+        ;
+
+        #modal-error {
+            color: darken(@armazon-color-primary, 20%);
+            margin: 0 0 2rem 0 !important;
+        }
+
+        dl {
+            margin: 0 0 @armazon-margin/2 0;
+
+            dt {
+                border-bottom: dotted @armazon-color-primary 1px;
+            }
+            dt dfn {
+                text-transform: uppercase;
+                font-size: 80%;
+                font-weight: 400;
+                color: @armazon-color-neutral;
+            }
+            dd {
+                font-size: 190%;
+                font-weight: 100;
+                letter-spacing: -.05rem;
+                color: @armazon-color-foreground;
+                text-align: right;
+            }
+        }
+
+        p {
+            margin: 0;
+            button {
+                width: 100%;
+                min-width: auto;
+                margin: 0;
+            }
+        }
+    }
+}
